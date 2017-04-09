@@ -1,0 +1,39 @@
+package pack1;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+public class class2 {
+
+	@Test
+	public static void Test_01() {
+		Reporter.log("Demoqa Reg Test01");
+		WebDriver dr = new FirefoxDriver();
+		// Url
+		dr.get("https://www.google.co.in/?gws_rd=ssl#q=xpath+checker");
+		// max
+		dr.manage().window().maximize();
+		// Click
+
+		int count = dr.findElements(By.xpath(".//*[@id='rso']/div/div/div[*]/div/h3/a")).size();
+		for (int i = 1; i <= count; i++) {
+			
+			String link = dr.findElement(By.xpath(".//*[@id='rso']/div/div/div["+i+"]/div/h3/a")).getText();
+			if(link.equals("XPath Tester - Web Toolkit Online"))
+			{
+				System.out.println("Pass - "+link);
+				break;
+			}
+		}
+
+		dr.quit();
+	}
+
+ 
+
+}
